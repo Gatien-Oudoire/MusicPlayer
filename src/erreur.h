@@ -1,0 +1,1 @@
+void ArretAvecErreur(const char *message);

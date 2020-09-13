@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     
 
     // démarage de SDL
-    if(SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO))
+    if(SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO) != 0)
         ArretAvecErreur("Erreur dans l'initialisation de l'interface graphique");
 
     window = SDL_CreateWindow("Gatien Oudoire: Lecteur Audio", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);

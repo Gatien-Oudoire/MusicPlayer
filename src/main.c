@@ -1,5 +1,4 @@
 // Pour compiler => gcc src/main.c -o bin/gla -I include -L lib -lmingw32 -lSDL2main -lSDL2
-
 #include "erreur.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +8,8 @@ int main(int argc, char *argv[])
 {
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
-    
+    SDL_Surface *icon = NULL;
+    SDL_Surface* iconSurface = SDL_LoadBMP("logo.bmp");
 
     // démarage de SDL
     if(SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO) != 0)
@@ -17,10 +17,11 @@ int main(int argc, char *argv[])
 
     window = SDL_CreateWindow("Gatien Oudoire: Lecteur Audio", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
 
+    SDL_SetWindowIcon(window, iconSurface);
     // création de la fenetre
     if (window == NULL)
         ArretAvecErreur("Erreur dans l'initialisation de la fenetre ");
-    
+
     // La Texture
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);  
 
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     if(SDL_RenderDrawRect(renderer, &rectangle) != 0)
         ArretAvecErreur("Erreur dans le dessin du rectangle");
     
+    
     SDL_Delay(5000);
 
     SDL_DestroyRenderer(renderer);
@@ -47,3 +49,4 @@ int main(int argc, char *argv[])
     
     return EXIT_SUCCESS;
 }
+
